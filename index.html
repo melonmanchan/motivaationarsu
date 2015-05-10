@@ -26,6 +26,7 @@
 
             var savedNarsuisms = localStorage.getItem("narsuisms");
 
+
             if (savedNarsuisms)
             {
                 counter = parseInt(savedNarsuisms);
@@ -38,6 +39,7 @@
             $("#motivationBtn").click(function () {
 
                 var lause = lauseet[Math.floor(Math.random() * lauseet.length)];
+
 
                 responsiveVoice.speak(lause, "Romanian Male");
 
@@ -57,6 +59,7 @@
                     complete: function () {
 
                         $("#bubble-content").transition({
+                            delay: 700,
                             opacity: 0
                         }).transition({
                             scale: 1,
@@ -68,7 +71,11 @@
                     }
                 }, 'ease')
 
-                $('#mouth').transition({ scale: [1, 1.5] }).transition({ scale: [1, 0] });
+                $.fx.speeds._default = 200;
+
+                $('#mouth').transition({ scale: [1, 1.5] }).transition({ scale: [1, 0.5] }).transition({ scale: [1, 1.5] }).transition({ scale: [1, 0] });
+
+                $.fx.speeds._default = 300;
             });
         });
 
