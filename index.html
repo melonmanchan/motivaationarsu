@@ -23,6 +23,15 @@
 
         $(document).ready(function () {
 
+
+            var savedNarsuisms = localStorage.getItem("narsuisms");
+
+            if (savedNarsuisms)
+            {
+                counter = parseInt(savedNarsuisms);
+            }
+            $("#counter").text("Narsuismejä: " + counter );
+
             $('.iris').xeyes();
             $('#mouth').transition({ scale: [1, 0] });
 
@@ -59,15 +68,13 @@
                     }
                 }, 'ease')
 
-
                 $('#mouth').transition({ scale: [1, 1.5] }).transition({ scale: [1, 0] });
-
-
             });
-
-
         });
 
+        $( window ).unload(function() {
+            localStorage.setItem("narsuisms" , counter );
+        });
 
     </script>
 </head>
