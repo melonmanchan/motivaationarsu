@@ -18,9 +18,12 @@
         $(document).ready(function () {
 
             $('.iris').xeyes();
+            $('#mouth').transition({ scale: [1, 0] })
 
             $("#motivationBtn").click(function () {
                 $(this).prop("disabled", true);
+
+                $("#mouth").show();
 
                 $("#bubble-content").text(lauseet[Math.floor(Math.random() * lauseet.length)]);
 
@@ -40,6 +43,9 @@
 
                     }
                 }, 'ease')
+
+
+                $('#mouth').transition({ scale: [1, 1.5] }).transition({ scale: [1, 0] });
 
 
             });
@@ -64,8 +70,8 @@
             <div class="iris"></div>
         </div>
     </div>
-    <button id="motivationBtn" class="motivation btn btn-success" type="button">Motivoi!</button>
-
+    <div id="mouth" style="display: none;" ></div>
+    <button id="motivationBtn" class="motivation btn-lg btn-success" type="button">Motivoi!</button>
 </div>
 
 

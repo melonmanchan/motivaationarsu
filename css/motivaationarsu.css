@@ -1,7 +1,8 @@
 
 
 html {
-    background-color: #333333;
+    background-image: url("../res/space.jpg");
+    background-size: cover;
 }
 
 #narsunaama {
@@ -19,9 +20,19 @@ html {
     margin-top: 10%;
 }
 
+#mouth {
+    position: absolute;
+    margin-left: 77px;
+    margin-top: -102px;
+    width: 80px;
+    height: 30px;
+    background: black;
+    border-radius: 10px;
+}
+
 .eye {
-    height: 38px;
-    width: 43px;
+    height: 48px;
+    width: 48px;
     background-color: #FFF;
     display: inline-block;
     border-radius: 100px;
@@ -57,8 +68,7 @@ html {
     position:absolute;
     bottom:-30px;
     right:-55px;
-    width:100px;
-    height:30px;
+
 }
 
 .bubble {
@@ -84,5 +94,5 @@ html {
 
 .bubble::after {
     left:147px !important;
-
+    bottom: -10px !important;
 }
