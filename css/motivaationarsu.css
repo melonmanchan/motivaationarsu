@@ -28,6 +28,7 @@ html {
     overflow: hidden;
     position: relative;
     box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(0,0,0,1);
 }
 
 .iris {
