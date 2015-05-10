@@ -5,6 +5,11 @@ html {
     background-size: cover;
 }
 
+body {
+    font-family: 'Roboto', sans-serif !important;
+
+}
+
 #narsunaama {
     position: absolute;
     display:inline-block;
@@ -12,6 +17,8 @@ html {
     margin-top: 15%;
     margin-left: 45% ;
 }
+
+
 #narsunaama > img {
 
 

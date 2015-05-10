@@ -4,6 +4,7 @@
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/jquery.xeyes-2.0.js"></script>
     <script src="js/jquery.transit.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/motivaationarsu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/speechbubble.css">
@@ -13,7 +14,11 @@
 
     <script>
 
-        var lauseet = ["Loistoveto!", "Nappiin meni!", "Jaksaa vielä!", "Hyvä!", "JESS!!!", "Pelimiehen liike!", "Ässäsuoritus", "Ei huolia!", "Ohhoh!"];
+        var lauseet = ["Loistoveto!", "Nappiin meni!", "Jaksaa vielä!", "Hyvä!", "JESS!!!", "Pelimiehen liike!",
+            "Ässäsuoritus", "Ei huolia!", "Ohhoh!", "Napakymppi!", "Kunnialla kotiin!", "Sairaat setit!",
+            "5/5", "Vautsi vau!", "JIHUU!!!", "Tuhatta ja sataa!!!", "Jummijammi!"];
+
+        var counter = 0;
 
         $(document).ready(function () {
 
@@ -21,6 +26,10 @@
             $('#mouth').transition({ scale: [1, 0] })
 
             $("#motivationBtn").click(function () {
+
+                counter += 1;
+                $("#counter").text("Narsuismejä: " + counter );
+
                 $(this).prop("disabled", true);
 
                 $("#mouth").show();
@@ -73,6 +82,7 @@
     <div id="mouth" style="display: none;" ></div>
     <button id="motivationBtn" class="motivation btn-lg btn-success" type="button">Motivoi!</button>
 </div>
+<h1 id="counter" > Narsuismejä: 0</h1>
 
 
 </body>
