@@ -1,5 +1,9 @@
 
 
+html {
+    background-color: #333333;
+}
+
 #narsunaama {
     position: absolute;
     display:inline-block;
@@ -51,7 +55,7 @@
 .motivation {
     position:absolute;
     bottom:-30px;
-    right:10px;
+    right:-55px;
     width:100px;
     height:30px;
 }
@@ -64,6 +68,8 @@
     font-size: 16pt;
     text-align: center;
     padding: 20pt;
+    margin-left: -130px !important;
+    margin-top: -40px !important;
 }
 
 .bubble::before {

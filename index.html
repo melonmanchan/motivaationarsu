@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.xeyes-2.0.js"></script>
+    <script src="js/jquery.transit.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/motivaationarsu.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/speechbubble.css">
+
+    <meta charset="UTF-8">
+    <title>Motivaationarsu</title>
+
+    <script>
+
+        var lauseet = ["Loistoveto!", "Nappiin meni!", "Jaksaa vielä!", "Hyvä!", "JESS!!!"];
+
+        $(document).ready(function () {
+
+            $('.iris').xeyes();
+
+            $("#motivationBtn").click(function () {
+                $(this).prop("disabled", true);
+
+                $("#bubble-content").text(lauseet[Math.floor(Math.random() * lauseet.length)]);
+
+                $("#bubble-content").transition({
+                    opacity: 100,
+                    scale: 2,
+                    complete: function () {
+
+                        $("#bubble-content").transition({
+                            opacity: 0
+                        }).transition({
+                            scale: 1,
+                            complete: function () {
+                                $("#motivationBtn").prop("disabled", false);
+                            }
+                        });
+
+                    }
+                }, 'ease')
+
+
+            });
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+<div id="narsunaama">
+    <p id="bubble-content" style="opacity: 0;" class="bubble triangle-border"></p>
+    <img src="res/narsu.png">
+
+    <div class="eye-container">
+        <div class="eye left">
+            <div class="iris"></div>
+        </div>
+
+        <div class="eye right">
+            <div class="iris"></div>
+        </div>
+    </div>
+    <button id="motivationBtn" class="motivation btn btn-success" type="button">Motivoi!</button>
+
+</div>
+
+
+</body>
+</html>
