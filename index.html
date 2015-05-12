@@ -9,7 +9,9 @@
     <link rel="stylesheet" type="text/css" href="css/motivaationarsu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/speechbubble.css">
-
+    <audio id="honk">
+        <source src="res/honk.wav" type="audio/wav">
+    </audio>
     <meta charset="UTF-8">
     <title>Motivaationarsu</title>
 
@@ -25,7 +27,7 @@
 
 
             var savedNarsuisms = localStorage.getItem("narsuisms");
-
+            var normalScale = 1.6;
 
             if (savedNarsuisms)
             {
@@ -77,6 +79,19 @@
 
                 $.fx.speeds._default = 300;
             });
+
+
+            $("#nose").click(function(){
+              $("#honk").get(0).play();
+
+                var oldNormal = normalScale;
+
+                normalScale += 0.05;
+
+                $("#narsunaama").transition({ scale: [oldNormal, oldNormal + 0.05] }).transition({ scale: [normalScale, normalScale] });
+            });
+
+
         });
 
         $( window ).unload(function() {
@@ -100,6 +115,7 @@
         </div>
     </div>
     <div id="mouth" style="display: none;" ></div>
+    <div id="nose"></div>
     <button id="motivationBtn" class="motivation btn-lg btn-success" type="button">Motivoi!</button>
 </div>
 <h1 id="counter" > Narsuismejä: 0</h1>
