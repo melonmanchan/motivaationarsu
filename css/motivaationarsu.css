@@ -1,7 +1,13 @@
 
 
 html {
-    background-color: #333333;
+    background-image: url("../res/space.jpg");
+    background-size: cover;
+}
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+
 }
 
 #narsunaama {
@@ -10,24 +16,51 @@ html {
     margin: auto;
     margin-top: 15%;
     margin-left: 45% ;
+    transform: scale(1.6);
 }
+
+
 #narsunaama > img {
 
-
+    
     margin-left: auto;
     margin-right: auto;
     margin-top: 10%;
 }
 
+#mouth {
+    position: absolute;
+    margin-left: 77px;
+    margin-top: -100px;
+    width: 80px;
+    height: 30px;
+    background: black;
+    border-radius: 10px;
+}
+
+#nose {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin-left: 98px;
+    margin-top: -150px;
+    cursor: pointer;
+
+}
+#nose:active{
+    cursor: move;
+}
+
 .eye {
-    height: 38px;
-    width: 43px;
+    height: 48px;
+    width: 48px;
     background-color: #FFF;
     display: inline-block;
     border-radius: 100px;
     overflow: hidden;
     position: relative;
     box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(0,0,0,1);
 }
 
 .iris {
@@ -46,18 +79,17 @@ html {
 }
 
 .eye-container {
-    width: 128px;
+    width: 136px;
     position: absolute;
     top: 43%;
-    left: 21%;
+    left: 19%;
 }
 
 .motivation {
     position:absolute;
     bottom:-30px;
     right:-55px;
-    width:100px;
-    height:30px;
+
 }
 
 .bubble {
@@ -83,5 +115,5 @@ html {
 
 .bubble::after {
     left:147px !important;
-
+    bottom: -10px !important;
 }

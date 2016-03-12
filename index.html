@@ -4,25 +4,56 @@
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/jquery.xeyes-2.0.js"></script>
     <script src="js/jquery.transit.min.js"></script>
+    <script src="js/responsivevoice.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/motivaationarsu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/speechbubble.css">
-
+    <audio id="honk">
+        <source src="res/honk.wav" type="audio/wav">
+    </audio>
     <meta charset="UTF-8">
     <title>Motivaationarsu</title>
 
     <script>
 
-        var lauseet = ["Loistoveto!", "Nappiin meni!", "Jaksaa vielä!", "Hyvä!", "JESS!!!", "Pelimiehen liike!", "Ässäsuoritus", "Ei huolia!", "Ohhoh!"];
+        var lauseet = ["Loistoveto!", "Nappiin meni!", "Jaksaa vielä!", "Hyvä!", "JESS!!!", "Pelimiehen liike!",
+            "Ässäsuoritus", "Ei huolia!", "Ohhoh!", "Napakymppi!", "Kunnialla kotiin!", "Sairaat setit!",
+            "Viis kautta viis", "Vautsi vau!", "JIHUU!!!", "Tuhatta ja sataa!!!", "Jummijammi!"];
+
+        var counter = 0;
 
         $(document).ready(function () {
 
+
+            var savedNarsuisms = localStorage.getItem("narsuisms");
+            var normalScale = 1.6;
+
+            if (savedNarsuisms)
+            {
+                counter = parseInt(savedNarsuisms);
+            }
+            $("#counter").text("Narsuismejä: " + counter );
+
             $('.iris').xeyes();
+            $('#mouth').transition({ scale: [1, 0] });
 
             $("#motivationBtn").click(function () {
+
+                var lause = lauseet[Math.floor(Math.random() * lauseet.length)];
+
+
+                responsiveVoice.speak(lause, "Romanian Male");
+
+                counter += 1;
+                $("#counter").text("Narsuismejä: " + counter );
+
                 $(this).prop("disabled", true);
 
-                $("#bubble-content").text(lauseet[Math.floor(Math.random() * lauseet.length)]);
+                $("#mouth").show();
+
+
+                $("#bubble-content").text(lause);
 
                 $("#bubble-content").transition({
                     opacity: 100,
@@ -30,6 +61,7 @@
                     complete: function () {
 
                         $("#bubble-content").transition({
+                            delay: 700,
                             opacity: 0
                         }).transition({
                             scale: 1,
@@ -41,12 +73,30 @@
                     }
                 }, 'ease')
 
+                $.fx.speeds._default = 200;
 
+                $('#mouth').transition({ scale: [1, 1.5] }).transition({ scale: [1, 0.5] }).transition({ scale: [1, 1.5] }).transition({ scale: [1, 0] });
+
+                $.fx.speeds._default = 300;
+            });
+
+
+            $("#nose").click(function(){
+              $("#honk").get(0).play();
+
+                var oldNormal = normalScale;
+
+                normalScale += 0.05;
+
+                $("#narsunaama").transition({ scale: [oldNormal, oldNormal + 0.05] }).transition({ scale: [normalScale, normalScale] });
             });
 
 
         });
 
+        $( window ).unload(function() {
+            localStorage.setItem("narsuisms" , counter );
+        });
 
     </script>
 </head>
@@ -64,9 +114,11 @@
             <div class="iris"></div>
         </div>
     </div>
-    <button id="motivationBtn" class="motivation btn btn-success" type="button">Motivoi!</button>
-
+    <div id="mouth" style="display: none;" ></div>
+    <div id="nose"></div>
+    <button id="motivationBtn" class="motivation btn-lg btn-success" type="button">Motivoi!</button>
 </div>
+<h1 id="counter" > Narsuismejä: 0</h1>
 
 
 </body>
