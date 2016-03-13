@@ -9,7 +9,7 @@ const SOCKET_EVENTS = {
     MOTIVATOR_AMOUNT_CHANGE : 'motivator_state_change'
 };
 
-let currentMotivations;
+let currentMotivations = 0;
 let currentMotivators  = 0;
 
 client.get('currentMotivations', function (err, reply) {
