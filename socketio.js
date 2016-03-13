@@ -13,11 +13,14 @@ function setupSocketIO(server) {
     let io = sockets(server);
 
     io.on(SOCKET_EVENTS.CONNECTION, socket => {
+
         console.log('New socket connected');
 
-        socket.on(SOCKET_EVENTS.MOTIVATE, () => {
+        socket.emit(SOCKET_EVENTS.MOTIVATE, { currentMotivations: currentMotivations });
+
+        socket.on(SOCKET_EVENTS.NEW_MOTIVATE, payload => {
             currentMotivations++;
-            io.emit(SOCKET_EVENTS.NEW_MOTIVATE, { currentMotivations: currentMotivations });
+            io.emit(SOCKET_EVENTS.NEW_MOTIVATE, { currentMotivations: currentMotivations, sentence: payload.sentence });
         });
     });
 };
