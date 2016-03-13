@@ -47,6 +47,12 @@ $(document).ready(function () {
     socket.on('new_motivate', handleIncomingMotivation);
     socket.on('motivate', handleIncomingMotivation);
 
+    socket.on('motivator_state_change', function (payload) {
+        var currentUserCount = payload.currentMotivators;
+
+        $('#online-users').text('Online narsuers: ' + currentUserCount);
+    });
+
     var sentences = ['Loistoveto!', 'Nappiin meni!', 'Jaksaa vielä!', 'Hyvä!', 'JESS!!!', 'Pelimiehen liike!',
         'Ässäsuoritus', 'Ei huolia!', 'Ohhoh!', 'Napakymppi!', 'Kunnialla kotiin!', 'Sairaat setit!',
     'Viis kautta viis', 'Vautsi vau!', 'JIHUU!!!', 'Tuhatta ja sataa!!!', 'Jummijammi!'];
