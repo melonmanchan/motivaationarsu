@@ -17,43 +17,32 @@
     <title>Motivaationarsu</title>
 
     <script>
-        var socket = io();
-
-        var lauseet = ["Loistoveto!", "Nappiin meni!", "Jaksaa vielä!", "Hyvä!", "JESS!!!", "Pelimiehen liike!",
-            "Ässäsuoritus", "Ei huolia!", "Ohhoh!", "Napakymppi!", "Kunnialla kotiin!", "Sairaat setit!",
-            "Viis kautta viis", "Vautsi vau!", "JIHUU!!!", "Tuhatta ja sataa!!!", "Jummijammi!"];
-
-        var counter = 0;
 
         $(document).ready(function () {
 
-
-            var savedNarsuisms = localStorage.getItem("narsuisms");
             var normalScale = 1.6;
+            var socket = io();
 
-            if (savedNarsuisms)
-            {
-                counter = parseInt(savedNarsuisms);
-            }
-            $("#counter").text("Narsuismejä: " + counter );
+            var lauseet = ["Loistoveto!", "Nappiin meni!", "Jaksaa vielä!", "Hyvä!", "JESS!!!", "Pelimiehen liike!",
+                "Ässäsuoritus", "Ei huolia!", "Ohhoh!", "Napakymppi!", "Kunnialla kotiin!", "Sairaat setit!",
+                "Viis kautta viis", "Vautsi vau!", "JIHUU!!!", "Tuhatta ja sataa!!!", "Jummijammi!"];
+
+            socket.on('new_motivate', function(payload) {
+                $('#counter').text('Narsuismejä: ' + payload.currentMotivations);
+            });
 
             $('.iris').xeyes();
             $('#mouth').transition({ scale: [1, 0] });
 
             $("#motivationBtn").click(function () {
-
+                socket.emit('motivate', {});
                 var lause = lauseet[Math.floor(Math.random() * lauseet.length)];
 
-
                 responsiveVoice.speak(lause, "Romanian Male");
-
-                counter += 1;
-                $("#counter").text("Narsuismejä: " + counter );
 
                 $(this).prop("disabled", true);
 
                 $("#mouth").show();
-
 
                 $("#bubble-content").text(lause);
 
@@ -82,7 +71,6 @@
                 $.fx.speeds._default = 300;
             });
 
-
             $("#nose").click(function(){
               $("#honk").get(0).play();
 
@@ -93,13 +81,7 @@
                 $("#narsunaama").transition({ scale: [oldNormal, oldNormal + 0.05] }).transition({ scale: [normalScale, normalScale] });
             });
 
-
         });
-
-        $( window ).unload(function() {
-            localStorage.setItem("narsuisms" , counter );
-        });
-
     </script>
 </head>
 <body>
@@ -121,7 +103,5 @@
     <button id="motivationBtn" class="motivation btn-lg btn-success" type="button">Motivoi!</button>
 </div>
 <h1 id="counter" > Narsuismejä: 0</h1>
-
-
 </body>
 </html>
